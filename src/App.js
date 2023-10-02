@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Tarjeta from "./components/cardwidget";
+import productos from "./components/itemlistocontainer";
+import Navbar from "./components/navbar";
 function App() {
+  const handleDelete = (id) => {
+    let producto = productos.filter((producto) => producto.id !== id);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <h1>Mis Productos</h1>
+      {productos.map((producto) => (
+        <Tarjeta
+          key={producto.id}
+          producto={producto}
+          onDelete={handleDelete}
+        />
+      ))}
     </div>
   );
 }
